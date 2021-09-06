@@ -1,14 +1,28 @@
 {
   "contacts": [
-      {
-          "name": "Dariia",
+    {
+      "name": "Dariia",
       "number": "3456787654",
       "id": 1
-      },
-            {
-          "name": "Dmytro",
+    },
+    {
+      "name": "Dmytro",
       "number": "8765434567",
       "id": 2
-      }
+    },
+    {
+      "name": {
+        "name": "sdfghjkl",
+        "number": "1234567"
+      },
+      "id": 3
+    },
+    {
+      "name": {
+        "name": "ertyu",
+        "number": "1234567"
+      },
+      "id": 4
+    }
   ]
 }
