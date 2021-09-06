@@ -1,7 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { deleteContact } from "../../redux/contacts/contacts-operations";
+import {
+  fetchContacts,
+  deleteContact,
+} from "../../redux/contacts/contacts-operations";
+import {
+  getIsLoading,
+  getFilteredContacts,
+} from "../../redux/contacts/contacts-selectors";
 
 import styles from "./ContactList.module.css";
 
@@ -30,19 +37,21 @@ ContactList.propTypes = {
   onDeleteContact: PropTypes.func.isRequired,
 };
 
-const filterContacts = (contacts, filter) => {
-  const nonormalizedFilter = filter.toLowerCase();
-  return contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(nonormalizedFilter)
-  );
-};
+// const filterContacts = (contacts, filter) => {
+//   const nonormalizedFilter = filter.toLowerCase();
+//   return contacts.filter((contact) =>
+//     contact.name.toLowerCase().includes(nonormalizedFilter)
+//   );
+// };
 
-const mapStateToProps = ({ contacts: { items, filter } }) => ({
-  contactList: filterContacts(items, filter),
+const mapStateToProps = (state) => ({
+  isLaodingContacts: getIsLoading(state),
+  contactList: getFilteredContacts(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onDeleteContact: (id) => dispatch(deleteContact(id)),
+  fetchContacts: () => dispatch(fetchContacts()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
