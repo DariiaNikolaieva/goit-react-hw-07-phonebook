@@ -9,34 +9,6 @@
       "name": "Dmytro",
       "number": "8765434567",
       "id": 2
-    },
-    {
-      "name": {
-        "name": "sdfghjkl",
-        "number": "1234567"
-      },
-      "id": 3
-    },
-    {
-      "name": {
-        "name": "ertyu",
-        "number": "1234567"
-      },
-      "id": 4
-    },
-    {
-      "name": {
-        "name": "wertyu",
-        "number": "23456"
-      },
-      "id": 5
-    },
-    {
-      "name": {
-        "name": "wertyui",
-        "number": "12345678"
-      },
-      "id": 6
     }
   ]
 }

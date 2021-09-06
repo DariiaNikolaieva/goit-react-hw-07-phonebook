@@ -23,17 +23,19 @@ export const fetchContacts = () => async (dispatch) => {
   }
 };
 
-export const addContact = (name, number) => async (dispatch) => {
-  const contact = { name, number };
-  dispatch(addContactRequest());
+export const addContact =
+  ({ name, number }) =>
+  async (dispatch) => {
+    const contact = { name, number };
+    dispatch(addContactRequest());
 
-  try {
-    const { data } = await contactsApi.addContact(contact);
-    dispatch(addContactSuccess(data));
-  } catch (error) {
-    dispatch(addContactError(error));
-  }
-};
+    try {
+      const { data } = await contactsApi.addContact(contact);
+      dispatch(addContactSuccess(data));
+    } catch (error) {
+      dispatch(addContactError(error));
+    }
+  };
 
 export const deleteContact = (contactId) => async (dispatch) => {
   dispatch(deleteContactRequest());

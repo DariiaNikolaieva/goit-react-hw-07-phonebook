@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { connect } from "react-redux";
+
 import { addContact } from "../../redux/contacts/contacts-operations";
 import { getAllContacts } from "../../redux/contacts/contacts-selectors";
 
@@ -9,6 +10,11 @@ class ContactForm extends Component {
   state = {
     name: "",
     number: "",
+  };
+
+  handleInputChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
   };
 
   handleSubmit = (e) => {
@@ -30,11 +36,6 @@ class ContactForm extends Component {
 
     this.props.onSubmit(this.state);
     this.resetForm();
-  };
-
-  handleInputChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
   };
 
   resetForm = () => {

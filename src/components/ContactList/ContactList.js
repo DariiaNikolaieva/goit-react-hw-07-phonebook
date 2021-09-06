@@ -1,4 +1,4 @@
-import React from "react";
+import { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
@@ -6,31 +6,45 @@ import {
   deleteContact,
 } from "../../redux/contacts/contacts-operations";
 import {
-  getIsLoading,
   getFilteredContacts,
+  getIsLoading,
 } from "../../redux/contacts/contacts-selectors";
 
 import styles from "./ContactList.module.css";
 
-const ContactList = ({ contactList, onDeleteContact }) => {
-  return (
-    <ul className={styles.list}>
-      {contactList.map(({ id, name, number }) => (
-        <li key={id} className={styles.item}>
-          <p>{name}: </p>
-          <p>{number}</p>
-          <button
-            type="button"
-            className={styles.button}
-            onClick={() => onDeleteContact(id)}
-          >
-            Delete
-          </button>
-        </li>
-      ))}
-    </ul>
-  );
-};
+class ContactList extends Component {
+  static propTypes = {
+    contactList: PropTypes.array.isRequired,
+    onDeleteContact: PropTypes.func.isRequired,
+  };
+  componentDidMount() {
+    this.props.fetchContacts();
+  }
+
+  render() {
+    const { contactList, onDeleteContact, isLoadingContacts } = this.props;
+    return (
+      <>
+        {isLoadingContacts && <h1>Loading..</h1>}
+        <ul className={styles.list}>
+          {contactList.map(({ id, name, number }) => (
+            <li key={id} className={styles.item}>
+              <p>{name}: </p>
+              <p>{number}</p>
+              <button
+                type="button"
+                className={styles.button}
+                onClick={() => onDeleteContact(id)}
+              >
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
+      </>
+    );
+  }
+}
 
 ContactList.propTypes = {
   contacts: PropTypes.array,
