@@ -46,18 +46,6 @@ class ContactList extends Component {
   }
 }
 
-ContactList.propTypes = {
-  contacts: PropTypes.array,
-  onDeleteContact: PropTypes.func.isRequired,
-};
-
-// const filterContacts = (contacts, filter) => {
-//   const nonormalizedFilter = filter.toLowerCase();
-//   return contacts.filter((contact) =>
-//     contact.name.toLowerCase().includes(nonormalizedFilter)
-//   );
-// };
-
 const mapStateToProps = (state) => ({
   isLaodingContacts: getIsLoading(state),
   contactList: getFilteredContacts(state),
